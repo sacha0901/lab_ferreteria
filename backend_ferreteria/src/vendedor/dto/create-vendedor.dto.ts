@@ -6,7 +6,7 @@ export class CreateVendedorDto {
   @IsNotEmpty({ message: 'El campo cedulaIdentidad no debe ser vacío' })
   @IsString({ message: 'El campo cedulaIdentidad debe ser de tipo cadena' })
   @MaxLength(12, {
-    message: 'El campo cedulaIdentidad no debe ser mayor a 20 caracteres',
+    message: 'El campo cedulaIdentidad no debe ser mayor a 12 caracteres',
   })
   readonly cedulaIdentidad: string;
   

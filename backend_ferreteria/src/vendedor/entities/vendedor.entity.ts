@@ -1,7 +1,9 @@
+import { ClienteEntity } from 'src/cliente/entities/cliente.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -43,4 +45,7 @@ export class VendedorEntity {
 
   @UpdateDateColumn({ name: 'fecha_modificacion' })
   fechaModificacion: Date;
+
+  @OneToMany(()=>ClienteEntity,cliente=>cliente.vendedor)
+  clientes: ClienteEntity[];
 }

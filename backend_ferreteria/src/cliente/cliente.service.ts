@@ -17,6 +17,7 @@ export class ClienteService {
   ): Promise<ClienteEntity> {
     const existe = await this.clienteRepository.findOneBy({
       cedulaIdentidad: createClienteDto.cedulaIdentidad.trim(),
+      idVendedor: createClienteDto.idVendedor,
     });
 
     if (existe) {
@@ -31,16 +32,16 @@ export class ClienteService {
       direccion: createClienteDto.direccion.trim(),
       limiteCredito: createClienteDto.limiteCredito,
       fechaAsignacion: createClienteDto.fechaAsignacion,
+      idVendedor: createClienteDto.idVendedor,
     });
   }
 
   async findAll(): Promise<ClienteEntity[]> {
-    return this.clienteRepository.find();
+    return this.clienteRepository.find({relations:{vendedor:true}});
   }
 
   async findOne(id: number): Promise<ClienteEntity> {
-    const cliente = await this.clienteRepository.findOneBy({id});
-
+    const cliente = await this.clienteRepository.findOne({ where: {id}, relations: {vendedor: true}});
     if (!cliente) {
       throw new NotFoundException(`El cliente ${id} no existe.`);
     }

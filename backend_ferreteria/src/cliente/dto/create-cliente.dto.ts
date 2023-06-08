@@ -56,4 +56,9 @@ export class CreateClienteDto {
   )
   readonly fechaAsignacion: Date;
 
+  @ApiProperty()
+  @IsDefined({ message: 'El campo idVendedor debe estar definido' })
+  @IsNumber({}, { message: 'El campo idVendedor debe ser de tipo numérico' })
+  readonly idVendedor: number;
+
 }
