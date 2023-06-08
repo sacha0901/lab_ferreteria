@@ -1,6 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDateString, IsDefined, IsNotEmpty, IsNumber, IsString, MaxLength } from 'class-validator';
 export class CreateVendedorDto {
+  
+  @ApiProperty()
+  @IsNotEmpty({ message: 'El campo cedulaIdentidad no debe ser vacío' })
+  @IsString({ message: 'El campo cedulaIdentidad debe ser de tipo cadena' })
+  @MaxLength(12, {
+    message: 'El campo cedulaIdentidad no debe ser mayor a 20 caracteres',
+  })
+  readonly cedulaIdentidad: string;
+  
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo nombre no debe ser vacío' })
   @IsString({ message: 'El campo nombre debe ser de tipo cadena' })

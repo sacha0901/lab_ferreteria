@@ -24,6 +24,7 @@ export class VendedorService {
     }
 
     return this.vendedorRepository.save({
+      cedulaIdentidad: createVendedorDto.cedulaIdentidad.trim(),
       nombre: createVendedorDto.nombre.trim(),
       apellidoPaterno: createVendedorDto.apellidoPaterno.trim(),
       apellidoMaterno: createVendedorDto.apellidoMaterno.trim(),
