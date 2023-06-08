@@ -33,11 +33,17 @@ export class CreateArticuloDto {
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo existenciaMaximo no debe ser vacío' })
-  @IsNumber({}, { message: 'El campo existenciaMaximo deber ser de tipo numérico' })
+  @IsNumber(
+    {},
+    { message: 'El campo existenciaMaximo deber ser de tipo numérico' },
+  )
   readonly existenciaMaximo: number;
 
   @ApiProperty()
   @IsNotEmpty({ message: 'El campo existenciaMinimo no debe ser vacío' })
-  @IsNumber({}, { message: 'El campo existenciaMinimo deber ser de tipo numérico' })
+  @IsNumber(
+    {},
+    { message: 'El campo existenciaMinimo deber ser de tipo numérico' },
+  )
   readonly existenciaMinimo: number;
 }

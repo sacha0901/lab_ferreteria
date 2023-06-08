@@ -1,8 +1,22 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, ParseIntPipe } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  ParseIntPipe,
+} from '@nestjs/common';
 import { VendedorService } from './vendedor.service';
 import { CreateVendedorDto } from './dto/create-vendedor.dto';
 import { UpdateVendedorDto } from './dto/update-vendedor.dto';
-import { ApiCreatedResponse, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiCreatedResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiTags,
+} from '@nestjs/swagger';
 import { VendedorEntity } from './entities/vendedor.entity';
 @ApiTags('vendedores')
 @Controller('vendedores')
@@ -11,28 +25,30 @@ export class VendedorController {
 
   @Post()
   @ApiCreatedResponse({ type: VendedorEntity })
-  @ApiOperation({ summary: 'Crea un nuevo vendedor'})
+  @ApiOperation({ summary: 'Crea un nuevo vendedor' })
   create(@Body() createVendedorDto: CreateVendedorDto) {
     return this.vendedorService.create(createVendedorDto);
   }
 
   @Get()
   @ApiOkResponse({ type: VendedorEntity, isArray: true })
-  @ApiOperation({ summary: 'Obtiene la lista de vendedores'})
+  @ApiOperation({ summary: 'Obtiene la lista de vendedores' })
   findAll() {
     return this.vendedorService.findAll();
   }
 
   @Get(':id')
   @ApiOkResponse({ type: VendedorEntity })
-  @ApiOperation({ summary: 'Obtiene un vendedor con base al identificador'})
+  @ApiOperation({ summary: 'Obtiene un vendedor con base al identificador' })
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.vendedorService.findOne(id);
   }
 
   @Patch(':id')
   @ApiOkResponse({ type: VendedorEntity })
-  @ApiOperation({ summary: 'Actualiza los datos de un vendedor con base al identificador'})
+  @ApiOperation({
+    summary: 'Actualiza los datos de un vendedor con base al identificador',
+  })
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body() updateVendedorDto: UpdateVendedorDto,
@@ -42,7 +58,7 @@ export class VendedorController {
 
   @Delete(':id')
   @ApiOkResponse()
-  @ApiOperation({ summary: 'Elimina un vendedor con base al identificador'})
+  @ApiOperation({ summary: 'Elimina un vendedor con base al identificador' })
   remove(@Param('id', ParseIntPipe) id: number) {
     return this.vendedorService.remove(id);
   }
