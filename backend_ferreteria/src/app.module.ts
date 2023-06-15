@@ -4,8 +4,11 @@ import { AppService } from './app.service';
 import { VendedorModule } from './vendedor/vendedor.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { ArticuloModule } from './articulo/articulo.module';
 import { ClienteModule } from './cliente/cliente.module';
+import { ProductoModule } from './producto/producto.module';
+import { VentaModule } from './venta/venta.module';
+import { UsuarioModule } from './usuario/usuario.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -22,8 +25,12 @@ import { ClienteModule } from './cliente/cliente.module';
       autoLoadEntities: true,
     }),
     VendedorModule,
-    ArticuloModule,
     ClienteModule,
+    ProductoModule,
+    VentaModule,
+    UsuarioModule,
+    AuthModule,
+
   ],
   controllers: [AppController],
   providers: [AppService],

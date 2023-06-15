@@ -7,18 +7,23 @@ import {
   Param,
   Delete,
   ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { VendedorService } from './vendedor.service';
 import { CreateVendedorDto } from './dto/create-vendedor.dto';
 import { UpdateVendedorDto } from './dto/update-vendedor.dto';
 import {
+  ApiBearerAuth,
   ApiCreatedResponse,
   ApiOkResponse,
   ApiOperation,
   ApiTags,
 } from '@nestjs/swagger';
 import { VendedorEntity } from './entities/vendedor.entity';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 @ApiTags('vendedores')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('vendedores')
 export class VendedorController {
   constructor(private readonly vendedorService: VendedorService) {}
