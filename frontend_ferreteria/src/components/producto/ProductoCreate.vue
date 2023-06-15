@@ -16,11 +16,14 @@ const existenciaProducto = ref('')
 
 async function crearProducto() {
     await http
-        .post(ENDPOINT, { codigo: codigo.value, descripcion: descripcion.value,
-             unidad: unidad.value,
-             precio: precio.value,
-             existenciaProducto: existenciaProducto.value
-             })
+        .post(ENDPOINT, {
+            codigo: codigo.value,
+            descripcion: descripcion.value,
+            unidad: unidad.value,
+            precio: precio.value,
+            existenciaProducto: existenciaProducto.value
+
+        })
         .then(() => router.push('/productos'))
 }
 
@@ -28,7 +31,6 @@ function goBack() {
     router.go(-1)
 }
 </script>
-
 
 <template>
     <div class="container">
@@ -58,6 +60,7 @@ function goBack() {
                     <input type="text" class="form-control" v-model="descripcion" placeholder="Descripcion" required />
                     <label for="descripcion">Descripcion</label>
                 </div>
+
                 <div class="form-floating">
                     <input type="text" class="form-control" v-model="unidad" placeholder="Unidad" required />
                     <label for="unidad">Unidad</label>
@@ -67,8 +70,8 @@ function goBack() {
                     <label for="precio">Precio</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" v-model="existenciaProducto" placeholder="Esistencia Producto" required />
-                    <label for="existenciaProducto">Esistencia Producto</label>
+                    <input type="text" class="form-control" v-model="existenciaProducto" placeholder="Existencia Producto" required />
+                    <label for="existenciaProducto">Existencia Producto</label>
                 </div>
                 <div class="text-center mt-3">
                     <button type="submit" class="btn btn-primary btn-lg">Crear</button>
@@ -82,3 +85,6 @@ function goBack() {
 </template>
 
 <style></style>
+
+
+

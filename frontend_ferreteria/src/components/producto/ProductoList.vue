@@ -21,7 +21,7 @@ function toEdit(id: number) {
 }
 
 async function toDelete(id: number) {
-  var r = confirm('¿Está seguro que se desea eliminar el Intérprete?')
+  var r = confirm('¿Está seguro que se desea eliminar el Producto?')
   if (r == true) {
     await http.delete(`${ENDPOINT}/${id}`).then(() => getProductos())
   }
@@ -66,16 +66,16 @@ onMounted(() => {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(interprete, index) in productos.values()" :key="interprete.id">
+          <tr v-for="(producto, index) in productos.values()" :key="producto.id">
             <th scope="row">{{ index + 1 }}</th>
-            <td>{{ interprete.codigo }}</td>
-            <td>{{ interprete.descripcion }}</td>
-            <td>{{ interprete.unidad }}</td>
-            <td>{{ interprete.precio }}</td>
-            <td>{{ interprete.existenciaProducto }}</td>
+            <td>{{ producto.codigo }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>{{ producto.unidad }}</td>
+            <td>{{ producto.precio }}</td>
+            <td>{{ producto.existenciaProducto }}</td>
             <td>
-              <button class="btn btn-link" @click="toEdit(interprete.id)">Editar</button>
-              <button class="btn btn-link" @click="toDelete(interprete.id)">Eliminar</button>
+              <button class="btn btn-link" @click="toEdit(producto.id)">Editar</button>
+              <button class="btn btn-link" @click="toDelete(producto.id)">Eliminar</button>
             </td>
           </tr>
         </tbody>

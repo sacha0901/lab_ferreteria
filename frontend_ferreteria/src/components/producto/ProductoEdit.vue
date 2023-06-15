@@ -8,22 +8,33 @@ const props = defineProps<{
 }>()
 
 const ENDPOINT = props.ENDPOINT_API ?? ''
-const nombre = ref('')
-const nacionalidad = ref('')
+const codigo = ref('')
+const descripcion = ref('')
+const unidad = ref('')
+const precio = ref('')
+const existenciaProducto = ref('')
 const id = router.currentRoute.value.params['id']
 
-async function editarInterprete() {
+async function editarProducto() {
     await http
         .patch(`${ENDPOINT}/${id}`, {
-            nombre: nombre.value,
-            nacionalidad: nacionalidad.value
+            codigo: codigo.value,
+            descripcion: descripcion.value,
+            unidad: unidad.value,
+            precio: precio.value,
+            existenciaProducto: existenciaProducto.value
+
         })
         .then(() => router.push('/productos'))
 }
 
-async function getInterprete() {
+async function getProducto() {
     await http.get(`${ENDPOINT}/${id}`).then((response) => {
-        ; (nombre.value = response.data.nombre), (nacionalidad.value = response.data.nacionalidad)
+        ; (codigo.value = response.data.codigo),
+            (descripcion.value = response.data.descripcion),
+            (unidad.value = response.data.unidad),
+            (precio.value = response.data.precio),
+            (existenciaProducto.value = response.data.existenciaProducto)
     })
 }
 
@@ -32,7 +43,7 @@ function goBack() {
 }
 
 onMounted(() => {
-    getInterprete()
+    getProducto()
 })
 </script>
 
@@ -51,18 +62,30 @@ onMounted(() => {
         </nav>
 
         <div class="row">
-            <h2>Editar Intérprete</h2>
+            <h2>Editar Producto</h2>
         </div>
 
         <div class="row">
-            <form @submit.prevent="editarInterprete">
+            <form @submit.prevent="editarProducto">
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" v-model="nombre" placeholder="Nombre" required />
-                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" v-model="codigo" placeholder="Codigo" required />
+                    <label for="codigo">Codigo</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" v-model="nacionalidad" placeholder="Nacionalidad" required />
-                    <label for="nacionalidad">Nacionalidad</label>
+                    <input type="text" class="form-control" v-model="descripcion" placeholder="Descripcion" required />
+                    <label for="descripcion">Descripcion</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" v-model="unidad" placeholder="Unidad" required />
+                    <label for="unidad">Unidad</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" v-model="precio" placeholder="Precio" required />
+                    <label for="precio">Precio</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" v-model="existenciaProducto" placeholder="Existencia Producto" required />
+                    <label for="existenciaProducto">Existencia Producto</label>
                 </div>
                 <div class="text-center mt-3">
                     <button type="submit" class="btn btn-primary btn-lg">Guardar</button>
