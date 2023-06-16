@@ -66,11 +66,11 @@ function goBack() {
                     <label for="unidad">Unidad</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" v-model="precio" placeholder="Precio" required />
+                    <input type="number" class="form-control" v-model="precio" placeholder="Precio" required />
                     <label for="precio">Precio</label>
                 </div>
                 <div class="form-floating">
-                    <input type="text" class="form-control" v-model="existenciaProducto" placeholder="Existencia Producto" required />
+                    <input type="number" class="form-control" v-model="existenciaProducto" placeholder="Existencia Producto" required />
                     <label for="existenciaProducto">Existencia Producto</label>
                 </div>
                 <div class="text-center mt-3">
